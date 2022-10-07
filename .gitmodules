@@ -1,0 +1,3 @@
+[submodule "pyspell"]
+	path = pyspell
+	url = git@github.com:bave/pyspell.git

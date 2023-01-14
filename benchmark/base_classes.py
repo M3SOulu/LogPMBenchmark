@@ -1,14 +1,13 @@
 import string
+import timeit
 from abc import abstractmethod
 from typing import Sequence, Hashable, Dict, Callable
 
+import numpy as np
 import optuna
 import pandas as pd
 import scipy
 from sklearn.metrics.cluster import adjusted_rand_score
-import timeit
-
-import numpy as np
 
 from dataset import Dataset
 from helpers import split_str_idx

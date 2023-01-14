@@ -3,13 +3,14 @@ import re
 from typing import Sequence, Hashable
 
 from benchmark.base_classes import BaseBenchmark
+from helpers import fix_whitespace_problem
 from pyspell.spell import lcsmap, lcsobj
 
 
 class SpellBenchmark(BaseBenchmark):
-    def __init__(self, refmt):
-        self.refmt = re.compile(refmt)
-        self.spell = lcsmap(refmt)
+    def __init__(self):
+        self.refmt = re.compile(r'\s+')
+        self.spell = lcsmap(r'\s+')
         self.lcs_objects = None
 
     def fit(self, x: Sequence[str]):
@@ -24,13 +25,14 @@ class SpellBenchmark(BaseBenchmark):
     def predict_once(self, x: str, match_obj: lcsobj) -> str:
         tokens = self.refmt.split(x)
         pattern = match_obj._lcsseq
+        self.spell.match(x)
         mask = []
         for tag, i1, i2, j1, j2 in difflib.SequenceMatcher(None, pattern, tokens, False).get_opcodes():
-            assert tag not in ('insert', 'remove')
             if tag == 'equal':
                 for t in tokens[j1:j2]:
                     mask.append('0' * len(t))
-            elif tag == 'replace':
+            else:
                 for t in tokens[j1:j2]:
                     mask.append('1' * len(t))
-        return '0'.join(mask)
+        mask_str = '0'.join(mask)
+        return fix_whitespace_problem(x, mask_str)

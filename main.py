@@ -13,7 +13,7 @@ from benchmark.lenma_benchmark import LenmaBenchmark
 from benchmark.spell_benchmark import SpellBenchmark
 from dataset import Dataset
 
-DATASETS = ('hadoop', 'hdfs', 'linux', 'openstack', 'proxifier', 'ssh')
+DATASETS = ('hpc', 'zookeeper', 'android', 'apache', 'hadoop', 'hdfs', 'linux', 'openstack', 'proxifier', 'ssh')
 BENCHMARKS = (SpellBenchmark, DrainBenchmark, LenmaBenchmark)
 BASELINES = (NoParameterBenchmark, AllParameterBenchmark, RandomParameterBenchmark)
 

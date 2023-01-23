@@ -16,12 +16,16 @@ from dataset import Dataset
 DATASETS = ('hpc', 'zookeeper', 'android', 'apache', 'hadoop', 'hdfs', 'linux', 'openstack', 'proxifier', 'ssh')
 BENCHMARKS = (SpellBenchmark, DrainBenchmark, LenmaBenchmark)
 BASELINES = (NoParameterBenchmark, AllParameterBenchmark, RandomParameterBenchmark)
+MULTI_PROCESS = True
 
 
 def main():
     args = [arg for arg in itertools.product(DATASETS, BENCHMARKS)]
-    with Pool(cpu_count()) as pool:
-        results = pool.starmap(benchmark, args)
+    if MULTI_PROCESS:
+        with Pool(cpu_count()) as pool:
+            results = pool.starmap(benchmark, args)
+    else:
+        results = [benchmark(*a) for a in args]
 
     df = pd.DataFrame.from_records(results)
     print(df.to_string())

@@ -5,7 +5,7 @@
 
 ## Introduction
 
-Log PM is a log parser benchmark emphasizing correct in-message parameter detection rather than template-based message clustering. The original paper is titled "LogPM: A new benchmark" and published at <Conference>.
+Log PM is a log parser benchmark emphasizing precise in-message parameter detection rather than template-based message clustering. The original paper is titled "LogPM: A new benchmark" and published at <Conference>.
 
 Log PM introduces a new parsing output called parameter mask, a binary sequence with the same length as the log message where each element indicates if the corresponding message character is a parameter.
 For instance, the log message:

@@ -31,7 +31,7 @@ cd LogPMBenchmark
 
 Prepare execution environment:
 ```commandline
-conda create --name LogPMBenchmark --file requirements.txt
+conda env create -f .\environment.yaml
 conda activate LogPMBenchmark
 ```
 

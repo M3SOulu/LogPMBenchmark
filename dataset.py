@@ -65,7 +65,7 @@ def check_data_directory():
 
 def download_dataset(name: str, block_size=2048):
     check_data_directory()
-    url = f'https://zenodo.org/record/7741390/files/{name}.csv'
+    url = f'https://zenodo.org/record/7827589/files/{name}.csv'
     temp_path = f'data/.{name}.csv'
     file_path = f'data/{name}.csv'
     if os.path.exists(file_path):

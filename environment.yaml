@@ -1,4 +1,4 @@
-name: LogParsersBenchmark
+name: LogPMBenchmark
 channels:
   - conda-forge
   - defaults

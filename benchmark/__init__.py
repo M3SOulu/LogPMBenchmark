@@ -2,6 +2,7 @@ from benchmark.baseline_benchmark import NoParameterBenchmark, AllParameterBench
 from benchmark.drain_benchmark import DrainBenchmark
 from benchmark.lenma_benchmark import LenmaBenchmark
 from benchmark.spell_benchmark import SpellBenchmark
+from benchmark.tipping_benchmark import TippingBenchmark
 
 BENCHMARKS = {
     'no_parameter': NoParameterBenchmark,
@@ -9,5 +10,6 @@ BENCHMARKS = {
     'random_parameter': RandomParameterBenchmark,
     'drain': DrainBenchmark,
     'lenma': LenmaBenchmark,
-    'spell': SpellBenchmark
+    'spell': SpellBenchmark,
+    'tipping': TippingBenchmark
 }

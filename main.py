@@ -7,15 +7,20 @@ from benchmark import BENCHMARKS
 
 
 def main():
-    fire.Fire({
-        'benchmark': benchmark,
-        'download': download,
-        'list': ls,
-    })
+    fire.Fire(
+        {
+            "benchmark": benchmark,
+            "download": download,
+            "list": ls,
+        }
+    )
 
 
-def benchmark(parser: str, datasets: Optional[Union[str, List[str]]] = None,
-              results_path: str = 'results.csv'):
+def benchmark(
+    parser: str,
+    datasets: Optional[Union[str, List[str]]] = None,
+    results_path: str = "results.csv",
+):
     """
     Benchmark a parser on a given dataset. If the dataset is not passed, the parser will be benchmarked on all
     available datasets. If any dataset does not exist in the data directory, the dataset will be automatically
@@ -72,9 +77,11 @@ def __benchmark(ds_name: str, parser: str) -> Dict[str, Any]:
     ds = Dataset(ds_name)
     b = BENCHMARKS[parser]()
     res = b.benchmark(ds)
-    print(f"({parser}, {ds_name}) -> {', '.join(f'{k}: {v:.2f}' for k, v in res.items())}")
-    return {'parser': parser, 'dataset': ds_name} | res
+    print(
+        f"({parser}, {ds_name}) -> {', '.join(f'{k}: {v:.2f}' for k, v in res.items())}"
+    )
+    return {"parser": parser, "dataset": ds_name} | res
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

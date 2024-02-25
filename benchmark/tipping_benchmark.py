@@ -2,7 +2,7 @@ import string
 from typing import Sequence, Hashable
 
 from benchmark.base_classes import BaseBenchmark
-from tipping import token_independency_clusters
+from tipping import parse
 
 
 class TippingBenchmark(BaseBenchmark):
@@ -11,7 +11,7 @@ class TippingBenchmark(BaseBenchmark):
         self.clusters = None
 
     def fit(self, x: Sequence[str]):
-        self.clusters, self.masks, _ = token_independency_clusters(
+        self.clusters, self.masks, _ = parse(
             x,
             threshold=0.9,
             symbols=string.punctuation,

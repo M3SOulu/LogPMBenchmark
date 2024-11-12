@@ -1,6 +1,8 @@
 import re
 import string
-from typing import Sequence
+from typing import Iterator, Sequence
+
+import numpy as np
 
 
 def split_str_idx(s: str, idx: Sequence[int]) -> Sequence[str]:
@@ -24,3 +26,9 @@ def fix_whitespace_problem(x, mask):
         # mask = mask[:m.start()] + ('0' * (m.end() - m.start())) + mask[m.start() + 1:]
     new_mask.append(mask[bidx:])
     return ''.join(new_mask)
+
+
+def sensitivity_gen(step) -> Iterator[float]:
+    arr = [float(n) for n in np.arange(0, 1.0, step)]
+    arr.append(1.0)
+    yield from arr

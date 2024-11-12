@@ -1,19 +1,20 @@
 import string
-from typing import Sequence, Hashable
+from typing import Optional, Sequence, Hashable
 
 from benchmark.base_classes import BaseBenchmark
 from tipping import parse
 
 
 class TippingBenchmark(BaseBenchmark):
-    def __init__(self):
+    def __init__(self, sensitivity: Optional[float] = None):
         self.masks = None
         self.clusters = None
+        self.theta = 0.9 if sensitivity is None else sensitivity
 
     def fit(self, x: Sequence[str]):
         self.clusters, self.masks, _ = parse(
             x,
-            threshold=0.9,
+            threshold=self.theta,
             symbols=string.punctuation,
             special_whites=[],
             special_blacks=[
@@ -21,7 +22,7 @@ class TippingBenchmark(BaseBenchmark):
                 r"[a-zA-Z]+(?:\.[a-zA-Z]+){2,}",
                 r"(?<=^|\s)/(?:[^/\s]+/)+[^/\s]*(?=$|\s)",
                 r"(?<=^|\s)(?:[^\.\s]+)(?:\.[^\.\s]+){2,}(?=$|\s)",
-                r"\(\)"
+                r"\(\)",
             ],
             return_templates=False,
             return_masks=True,
